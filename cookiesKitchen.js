@@ -11,10 +11,6 @@ window.console = window.console!==null ? window.console : { log: function() {}, 
 
 (function($){
 
-var $div,
-	$bg,
-	$close;
-
 cookiesKitchen = {
 	//Kitchen stuff
 	settings	: {
@@ -22,6 +18,12 @@ cookiesKitchen = {
 		cookieName : 'eatMe',
 		cookieVal  : 'soGood',
 		cookieTime : 100
+	},
+	html : {
+		$advice	: null,
+		$content: null,
+		$bg		: null,
+		$close	: null
 	},
 	tryCount	: 3,
 	cookie		: document.cookie,
@@ -52,7 +54,8 @@ cookiesKitchen = {
 		
 		//Get this script html tag
 		$(scripts).each(function(){
-			if( $(this).attr("data-domain") ){
+			if( this.id==='cookiesKitchen' && $(this).data("name")!==undefined ){
+				window.a=this;
 				thisTag = this;
 				$thisTag = $(this);
 			}
@@ -60,7 +63,7 @@ cookiesKitchen = {
 		
 		//Set settings
 		this.settings.ext		= $thisTag.attr('data-extension') || '';
-		this.settings.domain	= document.domain.replace(/^(w{3}\.)*([a-zA-Z]+)\.*.*/, '$2') + '_' + this.settings.ext;
+		this.settings.domain	= document.domain + '_' + this.settings.ext;
 		this.settings.name		= $thisTag.attr('data-name') || this.settings.domain;
 		this.settings.url		= $thisTag.attr('data-url');
 		this.settings.animation	= $thisTag.attr('data-animation');
@@ -72,11 +75,11 @@ cookiesKitchen = {
 			this.showAlert();
 			
 			$.ajax({
-				url			: self.settings.apiUrl,
+				url			: this.settings.apiUrl,
 				dataType	: "jsonp",
 				data 		: {
 					cFn		: "cookiesKitchen.cookMe",
-					domain	: self.settings.domain
+					domain	: this.settings.domain
 				},
 				timeout : 3000,
 				error : function(jqXHR, error){
@@ -141,57 +144,61 @@ cookiesKitchen = {
 	 */
 	showAlert : function(){
 		
-		if(!$div && !$bg){
+		if( !this.html.$advice && !this.html.$bg ){
 			
-			$bg	= $('<div id="cookies-alert-bg"></div>').hide();
-			$div = $('<div id="cookies-alert"></div>').hide();
+			this.html.$bg	= $('<div id="cookies-alert-bg"></div>').hide();
+			this.html.$advice = $('<div id="cookies-alert"></div>').hide();
 			
-			switch(this.settings.style){
+			switch( this.settings.style ){
 				case "1":
-					$close = $('<span id="close" style="top:10px">X</span>');
+					this.html.$close = $('<span id="close" style="top:10px">X</span>');
 					break;
 				case '2':
-					$close = $('<span id="close">Cerrar</span>');
+					this.html.$close = $('<span id="close">Cerrar</span>');
 					break;
 				default:
-					$close = $('<span id="close" style="top:10px">X</span>');
+					this.html.$close = $('<span id="close" style="top:10px">X</span>');
 			}
 			
-			$close.hide();
+			this.html.$close.hide();
 			
 			//Construct html advice
-			var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Política de Cookies</a>' : 'Política de Cookies',
-				$content= $('<p>' +
-								'<strong>' + this.settings.name + '</strong> utiliza cookies propias y de terceros para mejorar ' +
-								'tu experiencia de navegación y realizar tareas de análisis. Si continúas navegando consideramos ' +
-								'que aceptas el uso de cookies.<br/>Por favor, revisa nuestra ' + privacy + '.' +
-							'</p>'),
-				$close	= $close.click(this.hideAlert);
+			var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Política de Cookies</a>' : 'Política de Cookies';
+			
+			this.html.$content= $('<p>' +
+							'<strong>' + this.settings.name + '</strong> utiliza cookies propias y de terceros para mejorar ' +
+							'tu experiencia de navegación y realizar tareas de análisis. Si continúas navegando consideramos ' +
+							'que aceptas el uso de cookies.<br/>Por favor, revisa nuestra ' + privacy + '.' +
+						'</p>');
+			
+			this.html.$close.click(function(){
+				cookiesKitchen.hideAlert();
+			});
 			
 			//Append htm advice
-			$div.append('<style>' + this.styles["bg"] + this.styles[this.settings.style] + '</style>').append( $content.append( $close ) );
+			this.html.$advice.append('<style>' + this.styles["bg"] + this.styles[this.settings.style] + '</style>').append( this.html.$content.append( this.html.$close ) );
 			
-			$("body").prepend($div).prepend($bg);
+			$("body").prepend( this.html.$advice ).prepend( this.html.$bg );
 			
 			$(document).trigger("cooking-cookie");
 		}
 		
 		if(this.settings.block){
-			$bg.fadeIn();
+			this.html.$bg.fadeIn();
 		}
 		
 		switch(this.settings.animation){
 			case 'slide':
-				$div.slideDown();
+				this.html.$advice.slideDown();
 				break;
 			case 'fade':
-				$div.fadeIn();
+				this.html.$advice.fadeIn();
 				break;
 			default:	
-				$div.fadeIn();
+				this.html.$advice.fadeIn();
 		}
 		
-		$close.fadeIn();
+		this.html.$close.fadeIn();
 	},
 	
 	/*
@@ -200,21 +207,21 @@ cookiesKitchen = {
 	hideAlert : function(){
 		$(document).trigger("burning-cookie");
 		
-		$("#cookies-alert p span#close").fadeOut();
+		this.html.$close.fadeOut();
 
 		switch(cookiesKitchen.settings.outAnim){
 			case 'slide':
-				$div.slideUp();
+				this.html.$advice.slideUp();
 				break;
 			case 'fade':
-				$div.fadeOut();
+				this.html.$advice.fadeOut();
 				break;
 			default:
-				$div.fadeOut();
+				this.html.$advice.fadeOut();
 		}
 		
 		if( cookiesKitchen.settings.block ){
-			$bg.fadeOut();
+			this.html.$bg.fadeOut();
 		}
 			
 		cookiesKitchen.makeMeBurn();
@@ -266,7 +273,7 @@ cookiesKitchen = {
 		
 		if( payload.burnedCookies==='0' && this.tryCount>0 ){
 			$.ajax({
-				url			: self.settings.apiUrl,
+				url			: this.settings.apiUrl,
 				dataType	: "jsonp",
 				data 		: {
 					cFn		: "cookiesKitchen.makeMeBurn",
