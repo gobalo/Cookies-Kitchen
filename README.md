@@ -8,7 +8,7 @@ Include the script label into the body tag:
 
 ```html
 <script type="text/javascript" id="cookiesKitchen" data-name="WEB_NAME">
-		(function() { //https://rawgit.com/gobalo/Cookies-Kitchen/master/cookiesKitchen.min.js
+		(function() {
 		    var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src='https://rawgit.com/gobalo/Cookies-Kitchen/master/cookiesKitchen.min.js';
 		    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scp, s);
 		})();
@@ -38,6 +38,16 @@ Default style of the advice (1 || 2).
 
 **data-block**:
 Block the screen until the advice is closed.
+
+## Events
+
+To catch events you must bind events to "document"
+
+**cooking-cookie**:
+Will be triggered after dialog appears
+
+**burning-cookie**:
+Will be triggered after dialog disappears
 
 ## Authors
 
