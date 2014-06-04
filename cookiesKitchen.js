@@ -1,13 +1,10 @@
-/* ---------------- */
-/*	SCRIPT PARAMS	*/
-/*	domain			*/
-/* 	extension		*/
-/*	url(privacy url)*/
-/*	animations(slide,fade)	*/
-/*		in			*/
-/*		out			*/
-/*	block(background)*/
-/* ---------------- */
+/*
+  * Cookies Kitchen
+  * https://github.com/gobalo/Cookies-Kitchen
+  *
+  * Copyright 2014 Góbalo
+  * Released under the MIT license
+*/
 var cookiesKitchen;
 
 window.console = window.console!==null ? window.console : { log: function() {}, info: function() {} };
