@@ -43,6 +43,7 @@ Block the screen until the advice is closed.
 ## Authors
 
 [Jose Luis Represa](https://github.com/josex2r)
+
 [Alberto Vara](https://github.com/avara1986)
 
 ##License
