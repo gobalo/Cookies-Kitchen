@@ -7,9 +7,9 @@
 */
 var cookiesKitchen;
 
-window.console = window.console!==null ? window.console : { log: function() {}, info: function() {} };
+;(function($, window, document, undefined){
 
-(function($){
+window.console = window.console!==null ? window.console : { log: function() {}, info: function() {} };
 
 cookiesKitchen = {
 	//Kitchen stuff
@@ -27,6 +27,7 @@ cookiesKitchen = {
 	},
 	tryCount	: 3,
 	cookie		: document.cookie,
+	lastEvent	: null,
 	
 	//Available styles (bg is not an option)
 	styles : {
@@ -77,13 +78,13 @@ cookiesKitchen = {
 			$.ajax({
 				url			: this.settings.apiUrl,
 				dataType	: "jsonp",
-				data 		: {
+				data : {
 					cFn		: "cookiesKitchen.cookMe",
 					domain	: this.settings.domain
 				},
 				timeout : 3000,
-				error : function(jqXHR, error){
-					if( error==="timeout" ){
+				error : function(){
+					if( arguments[1]==="timeout" ){
 						self.cookMe();
 					}
 				}
@@ -92,22 +93,22 @@ cookiesKitchen = {
 	},
 	
 	/**
-	  * @param string name - Cookie name
-	  * @param string val - Cookie value
-	  * @param int time - Cookie expire time
-	*/
+	 * @param string name - Cookie name
+	 * @param string val - Cookie value
+	 * @param int time - Cookie expire time
+	 */
 	setCookie : function(name, val, time){
 		var exdate = new Date();
 		exdate.setDate(exdate.getDate() + time);
-		value = escape(val) + ( (time==null) ? '' : '; expires=' + exdate.toUTCString() );
+		val = encodeURIComponent(val) + ( (time===null) ? '' : '; expires=' + exdate.toUTCString() );
 		document.cookie = name + '=' + val;
 		this.cookie = document.cookie;
 	},
 	
 	/**
-	  * @param string name - Cookie name
-	  * @return string - Returns the value of the requested cookie, null if not found
-	*/
+	 * @param string name - Cookie name
+	 * @return string - Returns the value of the requested cookie, null if not found
+	 */
 	getCookie : function(name){
 		var cookieValue	= this.cookie,
 			init = cookieValue.indexOf(' ' + name + '=');	
@@ -124,16 +125,16 @@ cookiesKitchen = {
 			if( end===-1 ){
 				end = cookieValue.length;
 			}
-			cookieValue = unescape(cookieValue.substring(init, end));
+			cookieValue = decodeURIComponent(cookieValue.substring(init, end));
 		}
 		return cookieValue;
 	},
 	
 	/**
-	  * @param string name - Cookie name
-	  * @param string val - Cookie value
-	  * @return boolean - Returns if a cookie exist with requested name and value
-	*/
+	 * @param string name - Cookie name
+	 * @param string val - Cookie value
+	 * @return boolean - Returns if a cookie exist with requested name and value
+	 */
 	checkCookie : function(name, val){
 		var re = new RegExp(name + '=' + val + '(;*)', 'g');
 		return this.cookie.match(re);
@@ -176,11 +177,12 @@ cookiesKitchen = {
 			});
 			
 			//Append htm advice
-			this.html.$advice.append('<style>' + this.styles["bg"] + this.styles[this.settings.style] + '</style>').append( this.html.$content.append( this.html.$close ) );
+			this.html.$advice.append('<style>' + this.styles.bg + this.styles[this.settings.style] + '</style>').append( this.html.$content.append( this.html.$close ) );
 			
-			$("body").prepend( this.html.$advice ).prepend( this.html.$bg );
+			$('body').prepend( this.html.$advice ).prepend( this.html.$bg );
 			
-			$(document).trigger("cooking-cookie");
+			$(document).trigger('cooking-cookie');
+			this.lastEvent = 'cooking-cookie';
 		}
 		
 		if(this.settings.block){
@@ -205,7 +207,8 @@ cookiesKitchen = {
 	 * Hides cookies advice
 	 */
 	hideAlert : function(){
-		$(document).trigger("burning-cookie");
+		$(document).trigger('burning-cookie');
+		this.lastEvent = 'burning-cookie';
 		
 		this.html.$close.fadeOut();
 
@@ -228,11 +231,11 @@ cookiesKitchen = {
 	},
 	
 	/**
-	  * @desc PUBLIC - Checks if the advice have been closed before by the user (stored in session),
-	  * 	if true hides alert and set the cookie on the browser
-	  * 		0 => User never have closed the advice (cookie) 
-	  * 		1 => User have closed the advice (cokkie)
-	  * @param object payload - CookiesKitchen API returned object
+	 * @desc PUBLIC - Checks if the advice have been closed before by the user (stored in session),
+	 * if true hides alert and set the cookie on the browser
+	 * 0 => User never have closed the advice (cookie) 
+	 * 1 => User have closed the advice (cokkie)
+	 * @param object payload - CookiesKitchen API returned object
 	*/
 	cookMe : function(payload){
 		
@@ -256,10 +259,10 @@ cookiesKitchen = {
 	},
 	
 	/**
-	  * @desc PUBLIC - Tells the API that user have closed the advice, and store it (session)
-	  * @param object payload - CookiesKitchen API returned object
-	  * 		0 => User never have closed the advice (session) 
-	  * 		1 => User have closed the advice (sesison)
+	 * @desc PUBLIC - Tells the API that user have closed the advice, and store it (session)
+	 * @param object payload - CookiesKitchen API returned object
+	 * 0 => User never have closed the advice (session) 
+	 * 1 => User have closed the advice (sesison)
 	*/
 	makeMeBurn : function(payload){
 		
@@ -275,7 +278,7 @@ cookiesKitchen = {
 			$.ajax({
 				url			: this.settings.apiUrl,
 				dataType	: "jsonp",
-				data 		: {
+				data : {
 					cFn		: "cookiesKitchen.makeMeBurn",
 					domain	: cookiesKitchen.settings.domain
 				},
@@ -290,6 +293,4 @@ cookiesKitchen = {
 
 cookiesKitchen.init();
 
-
-
-})(jQuery);
+})(jQuery, window, document);

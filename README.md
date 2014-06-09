@@ -7,9 +7,9 @@ Simple cookies advice for your webs
 Include the script label into the body tag:
 
 ```html
-<script type="text/javascript" id="cookiesKitchen" data-name="WEB_NAME">
+<script type="text/javascript" data-domain="NAME" data-url="ADVICE-URL">
 		(function() {
-		    var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src='https://rawgit.com/gobalo/Cookies-Kitchen/master/cookiesKitchen.min.js';
+		    var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.gobalo.es/js/cookiesKitchen.js';
 		    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scp, s);
 		})();
 </script>
@@ -19,7 +19,7 @@ Include the script label into the body tag:
 
 To pass data to the script use html data tag:
 
-**data-name**: 
+**data-domain**: 
 Name of your site, will be shown inside the advice text (REQUIRED FIELD).
 
 **data-extension**: 
@@ -28,26 +28,17 @@ Namespace for your site, use this if you want to include different advices in di
 **data-url**: 
 Link to your cookies privacy policy.
 
-**data-animation**: 
-Animation to show the advice (slide || fade).
+**data-in**: 
+Transition to show the advice (slide || fade).
 
-Default: "slide".
+**data-out**: 
+Transition to hide the advice (slide || fade).
 
 **data-style**:
 Default style of the advice (1 || 2).
 
 **data-block**:
 Block the screen until the advice is closed.
-
-## Events
-
-To catch events you must bind events to "document"
-
-**cooking-cookie**:
-Will be triggered after dialog appears
-
-**burning-cookie**:
-Will be triggered after dialog disappears
 
 ## Authors
 
