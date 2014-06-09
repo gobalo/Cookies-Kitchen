@@ -1,4 +1,4 @@
-#Cookies-Kitchen [![Build Status](https://travis-ci.org/gobalo/Cookies-Kitchen.svg?branch=master)](https://travis-ci.org/gobalo/Cookies-Kitchen)
+#Cookies-Kitchen [![Build Status](https://travis-ci.org/gobalo/Cookies-Kitchen.svg?branch=master)](https://travis-ci.org/gobalo/Cookies-Kitchen) [![Coverage Status](https://img.shields.io/coveralls/gobalo/Cookies-Kitchen.svg)](https://coveralls.io/r/gobalo/Cookies-Kitchen)
 
 Simple cookies advice for your webs
 
