@@ -35,27 +35,28 @@ module.exports = function(grunt) {
       },
     },
     qunit: {
-      all: ['test/**/*.html'],
+      files: ['test/**/*.html'],
       options: {
         timeout: 30000,
         "--web-security": "no",
         coverage: {
           disposeCollector: true,
-          src: ['src/<%= pkg.name %>.js'],
+          src: ['src/**/*.js'],
           instrumentedFiles: "temp/",
-          htmlReport: "build/report/coverage",
-          lcovReport: "build/report/lcov",
-          coberturaReport: "build/report/",
+          htmlReport: "reports/coverage",
+          lcovReport: "reports/lcov",
+          coberturaReport: "reports/",
           linesThresholdPct: 0
         }
       }
     },
     coveralls: {
         options: {
+          src: 'reports/lcov.info',
           force: true // dont fail if coveralls fails
         },
         main_target: {
-          src: "build/report/lcov/lcov.info"
+          src: "reports/lcov/lcov.info"
         }
 	},
     jshint: {

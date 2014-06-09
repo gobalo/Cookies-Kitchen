@@ -8,8 +8,7 @@
   <!-- Load local QUnit. -->
   <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen">
   <script src="../libs/qunit/qunit.js"></script>
-  <!-- Load local lib and tests. -->
-  <script src="../src/Cookies-Kitchen.js"></script>
+  <!-- Load tests. -->
   <script src="Cookies-Kitchen_test.js"></script>
   <!-- Removing access to jQuery and $. But it'll still be available as _$, if
        you REALLY want to mess around with jQuery in the console. REMEMBER WE
@@ -17,12 +16,8 @@
   <script>window._$ = jQuery.noConflict(true);</script>
 </head>
 <body>
-	<script type="text/javascript" id="cookiesKitchen" data-name="TestName" data-extension="root">
-	(function() {
-		var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src='../src/cookiesKitchen.js';
-		var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scp, s);
-	})();
-	</script>
+	<!-- Load local lib. -->
+	<script type="text/javascript" id="cookiesKitchen" src="../src/cookiesKitchen.js" data-name="TestName" data-extension="root"></script>
   	<div id="qunit"></div>
   	<div id="qunit-fixture"></div>
 </body>

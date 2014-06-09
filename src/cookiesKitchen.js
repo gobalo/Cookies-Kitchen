@@ -48,7 +48,7 @@ cookiesKitchen = {
 		var self = this,
 			scripts	= document.getElementsByTagName('script'),
 			thisTag	= scripts[scripts.length-1],
-			$thisTag = $(thisTag);
+			$thisTag = null;
 		
 		//Set current cookie
 		this.cookie = document.cookie;
@@ -61,6 +61,10 @@ cookiesKitchen = {
 				$thisTag = $(this);
 			}
 		});
+		
+		if( $thisTag===null ){
+			//$thisTag = $('<div data-url="" data-style="1"></div>');
+		}
 		
 		//Set settings
 		this.settings.ext		= $thisTag.attr('data-extension') || '';
