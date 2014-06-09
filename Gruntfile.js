@@ -37,6 +37,22 @@ module.exports = function(grunt) {
     qunit: {
       files: ['test/**/*.html']
     },
+    timeout: 30000,
+    "--web-security": "no",
+    coveralls: {
+		options: {
+			src: [ "src/<%= pkg.name %>.js" ],
+			instrumentedFiles: "temp/",
+			coberturaReport: "report/",
+			htmlReport: "build/report/coverage",
+			lcovReport: "build/report/lcov",
+			linesThresholdPct: 70,
+			force: true // dont fail if coveralls fails
+		},
+		main_target: {
+			src: "build/report/lcov/lcov.info"
+		}
+	},
     jshint: {
       gruntfile: {
         options: {
