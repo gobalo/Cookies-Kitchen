@@ -24,7 +24,7 @@
     expect(1);
     
     $("body").append('<script type="text/javascript" id="cookiesKitchen" data-name="TestName" data-extension="root">(function() {'+
-    "var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src='https://rawgit.com/gobalo/Cookies-Kitchen/master/cookiesKitchen.min.js';"+
+    "var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src='https://rawgit.com/gobalo/Cookies-Kitchen/master/src/cookiesKitchen.min.js';"+
     "var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scp, s);"+
     '})();</script>');
     

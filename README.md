@@ -9,7 +9,7 @@ Include the script label into the body tag:
 ```html
 <script type="text/javascript" data-domain="NAME" data-url="ADVICE-URL">
 		(function() {
-		    var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.gobalo.es/js/cookiesKitchen.js';
+		    var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src=('https://rawgit.com/gobalo/Cookies-Kitchen/master/src/cookiesKitchen.min.js';
 		    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scp, s);
 		})();
 </script>
