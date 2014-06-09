@@ -21,8 +21,8 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['src/jquery.<%= pkg.name %>.js'],
-        dest: 'dist/jquery.<%= pkg.name %>.js'
+        src: ['src/<%= pkg.name %>.js'],
+        dest: 'dist/<%= pkg.name %>.js'
       },
     },
     uglify: {
@@ -30,23 +30,25 @@ module.exports = function(grunt) {
         banner: '<%= banner %>'
       },
       dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/jquery.<%= pkg.name %>.min.js'
+        src: 'src/<%= pkg.name %>.js',
+        dest: 'dist/<%= pkg.name %>.min.js'
       },
     },
     qunit: {
+      all: ['test/**/*.html'],
       options: {
         timeout: 30000,
         "--web-security": "no",
         coverage: {
-          src: [ "src/<%= pkg.name %>.js" ],
+          disposeCollector: true,
+          src: ['src/<%= pkg.name %>.js'],
           instrumentedFiles: "temp/",
           htmlReport: "build/report/coverage",
           lcovReport: "build/report/lcov",
+          coberturaReport: "build/report/",
           linesThresholdPct: 0
         }
-      },
-      files: ['test/**/*.html'],
+      }
     },
     coveralls: {
         options: {

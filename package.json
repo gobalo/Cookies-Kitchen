@@ -1,8 +1,8 @@
 {
-  "name": "Cookies-Kitchen",
+  "name": "cookiesKitchen",
   "title": "Cookies Kitchen",
   "description": "jQuery cookies advice",
-  "version": "0.0.0-ignored",
+  "version": "0.0.0-ignore",
   "homepage": "https://github.com/gobalo/Cookies-Kitchen",
   "engines": {
     "node": ">= 0.10.0"
@@ -12,16 +12,16 @@
     "url": "https://github.com/gobalo/Cookies-Kitchen/issues"
   },
   "author": [
-  	{
-  	  "name": "Jose Luis Represa",
+    {
+      "name": "Jose Luis Represa",
       "email": "codex2r@gmail.com",
-      "url" : "https://github.com/josex2r"
-  	},
-  	{
-  	  "name": "Alberto Vara",
+      "url": "https://github.com/josex2r"
+    },
+    {
+      "name": "Alberto Vara",
       "email": "a.vara.1986@gmail.com",
-      "url" : "https://github.com/avara1986"
-  	}
+      "url": "https://github.com/avara1986"
+    }
   ],
   "licenses": [
     {
@@ -37,13 +37,13 @@
     "jQuery": ">=1.7"
   },
   "devDependencies": {
-  	"grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-coveralls": "0.3.0",
-    "grunt-qunit-istanbul": "^0.4.0",
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-watch": "~0.4.0",
-    "grunt-contrib-clean": "~0.4.0"
+    "grunt-coveralls": "^0.3.0",
+    "grunt-qunit-istanbul": "^0.4.5"
   }
 }
