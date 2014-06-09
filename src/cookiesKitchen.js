@@ -293,4 +293,4 @@ cookiesKitchen = {
 
 cookiesKitchen.init();
 
-})(jQuery, window, document);
+})(jQuery||window._$, window, document);
