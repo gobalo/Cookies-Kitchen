@@ -39,22 +39,22 @@ module.exports = function(grunt) {
         timeout: 30000,
         "--web-security": "no",
         coverage: {
-          baseUrl: ".",
-          src: ['test/**/*.html'],
+          src: [ "src/<%= pkg.name %>.js" ],
           instrumentedFiles: "temp/",
-          htmlReport: "_tests/reports/coverage",
-          lcovReport: "_tests/reports/lcov",
+          htmlReport: "build/report/coverage",
+          lcovReport: "build/report/lcov",
           linesThresholdPct: 0
         }
-      }
+      },
+      files: ['test/**/*.html'],
     },
     coveralls: {
-		options: {
-			force: true // dont fail if coveralls fails
-		},
-		main_target: {
-			src: "_tests/report/lcov/lcov.info"
-		}
+        options: {
+          force: true // dont fail if coveralls fails
+        },
+        main_target: {
+          src: "build/report/lcov/lcov.info"
+        }
 	},
     jshint: {
       gruntfile: {
