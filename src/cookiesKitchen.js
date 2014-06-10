@@ -216,7 +216,7 @@ cookiesKitchen = {
 		
 		this.html.$close.fadeOut();
 
-		switch(cookiesKitchen.settings.outAnim){
+		switch(cookiesKitchen.settings.animation){
 			case 'slide':
 				this.html.$advice.slideUp();
 				break;

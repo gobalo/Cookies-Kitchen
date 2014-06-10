@@ -26,13 +26,6 @@
 		strictEqual($('#cookiesKitchen').length, 1, 'Script have been appended successfully');
 	});
 	
-	asyncTest("no errors", function() {
-		setTimeout(function() {
-			ok(1, "this test would fail.. if it ever ran");
-			start();
-		}, 1000);
-	});
-	
 	test("Alert created", function() {
 		expect(2);
 		strictEqual($('#cookies-alert').length, 1, 'Alert have not been appended yet');
@@ -53,11 +46,41 @@
 			
 			setTimeout(function(){
 				ok(!$('#cookies-alert').is(":visible"), 'Alert HTML stills visible');
+				$(document).unbind();
 				start();
 			}, 500);
 		});
 		
 		$('#cookies-alert p span#close').click();
+	});
+	
+	test("Check cookie value", function() {
+		expect(1);
+		ok(window.cookiesKitchen.checkCookie('eatMe', 'soGood'), 'Cookie have not been set: '+window.cookiesKitchen.getCookie('eatMe'));
+	});
+	
+	test("Show alert", function() {
+		expect(1);
+		window.cookiesKitchen.animation = 'fade';
+		window.cookiesKitchen.block = true;
+		//Show alert again
+		window.cookiesKitchen.cookMe();
+		ok($('#cookies-alert').is(":visible"), 'Alert HTML is hidden');
+	});
+	
+	asyncTest("Close alert", function() {
+		window.cookiesKitchen.hideAlert();
+		setTimeout(function(){
+			ok(!$('#cookies-alert').is(":visible"), 'Alert HTML stills visible');
+			start();
+		}, 1000);
+	});
+	
+	test("CookMe", function() {
+		expect(1);
+		window.cookiesKitchen.hideAlert();
+		window.cookiesKitchen.cookMe({burnedCookies : '1'});
+		ok(!$('#cookies-alert').is(":visible"), 'Alert HTML stills visible');
 	});
 	
 }(jQuery));
