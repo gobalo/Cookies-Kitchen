@@ -1,4 +1,4 @@
-/*! Cookies Kitchen - v0.0.0-ignore - 2014-06-09
+/*! Cookies Kitchen - v0.0.0-ignore - 2014-06-10
 * https://github.com/gobalo/Cookies-Kitchen
 * Copyright (c) 2014 ; Licensed MIT */
 var cookiesKitchen;

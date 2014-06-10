@@ -37,15 +37,14 @@
     "jQuery": ">=1.7"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
+    "grunt": "^0.4.5",
     "grunt-blanket-qunit": "^0.2.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-watch": "~0.4.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-coveralls": "^0.3.0",
-    "grunt-qunit-istanbul": "^0.4.5",
-    "istanbul": "^0.2.10"
+    "grunt-qunit-istanbul": "^0.4.5"
   }
 }
