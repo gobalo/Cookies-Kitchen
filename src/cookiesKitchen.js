@@ -35,7 +35,8 @@ cookiesKitchen = {
 		"bg": "#cookies-alert-bg{top:0;left:0;background:black;opacity:0.7;z-index:999;position:fixed;width:100%;height:100%}",
 		//Selectable styles
 		"1"	: "#cookies-alert{top:0;left:0;position:fixed;z-index:999999;padding: 10px 0px;width: 100%;background-color:#CA303C;border-bottom:solid 1px #a72731;box-shadow: 0px 0px 2px #a72731;}#cookies-alert p{width: 100%;text-align: center;font-family:'Open Sans',sans-serif,Arial;font-size:14px;margin: 0;color: #fff;}#cookies-alert p a{color:#fff}#cookies-alert #close{font-weight:900;text-shadow: 1px 1px 2px #bbb;cursor:pointer;position:fixed;right: 20px;}",
-		"2"	: "#cookies-alert{bottom:10px;right:20px;position:fixed;z-index:999999;padding:8px 0px;width:400px;background-color:#CA303C;border-radius:4px;}#cookies-alert p{font-family:'Open Sans',sans-serif,Arial;font-size:13px;margin: 0px 20px 0 20px;text-align:justify;color:#fff;}#cookies-alert p a{color:#fff}#cookies-alert #close{cursor:pointer;float:right;text-decoration:underline}"
+		"2"	: "#cookies-alert{bottom:10px;right:20px;position:fixed;z-index:999999;padding:8px 0px;width:400px;background-color:#CA303C;border-radius:4px;}#cookies-alert p{font-family:'Open Sans',sans-serif,Arial;font-size:13px;margin: 0px 20px 0 20px;text-align:justify;color:#fff;}#cookies-alert p a{color:#fff}#cookies-alert #close{cursor:pointer;float:right;text-decoration:underline}",
+		"3" : "#cookies-alert{bottom:0;left:0;position:fixed;z-index:999999;padding: 10px 0px;width: 100%;background-color:#FF4844;border-bottom:solid 1px #a72731;box-shadow: 0px 0px 2px #a72731;}#cookies-alert p{width: 100%;text-align: center;font-family:'Open Sans',sans-serif,Arial;font-size:14px;margin: 0;color: #fff;}#cookies-alert p a{color:#fff}#cookies-alert #close{font-weight:900;text-shadow: 1px 1px 2px #bbb;cursor:pointer;position:fixed;right: 20px;}"
 	},
 	
 	/*
@@ -154,27 +155,35 @@ cookiesKitchen = {
 			this.html.$bg	= $('<div id="cookies-alert-bg"></div>').hide();
 			this.html.$advice = $('<div id="cookies-alert"></div>').hide();
 			
-			switch( this.settings.style ){
-				case "1":
-					this.html.$close = $('<span id="close" style="top:10px">X</span>');
-					break;
-				case '2':
-					this.html.$close = $('<span id="close">Cerrar</span>');
-					break;
-				default:
-					this.html.$close = $('<span id="close" style="top:10px">X</span>');
-			}
-			
-			this.html.$close.hide();
-			
 			//Construct html advice
 			var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Política de Cookies</a>' : 'Política de Cookies';
 			
-			this.html.$content= $('<p>' +
+			switch( this.settings.style ){
+				case "1":
+					this.html.$close = $('<span id="close" style="top:10px">X</span>');
+					this.html.$content= $('<p>' +
 							'<strong>' + this.settings.name + '</strong> utiliza cookies propias y de terceros para mejorar ' +
 							'tu experiencia de navegación y realizar tareas de análisis. Si continúas navegando consideramos ' +
 							'que aceptas el uso de cookies.<br/>Por favor, revisa nuestra ' + privacy + '.' +
 						'</p>');
+					break;
+				case '2':
+					this.html.$close = $('<span id="close">Cerrar</span>');
+					this.html.$content= $('<p>' +
+							'<strong>' + this.settings.name + '</strong> utiliza cookies propias y de terceros para mejorar ' +
+							'tu experiencia de navegación y realizar tareas de análisis. Si continúas navegando consideramos ' +
+							'que aceptas el uso de cookies.<br/>Por favor, revisa nuestra ' + privacy + '.' +
+						'</p>');
+					break;
+				default:
+					this.html.$close = $('<span id="close" style="top:10px">X</span>');
+					this.html.$content= $('<p>El sitio web de ' +
+							'<strong>' + this.settings.name + '</strong> hace uso de cookies propias y de terceros para ' +
+							'ofrecerte un mejor servicio. Por favor, revisa nuestra ' + privacy + '.' +
+						'</p>');
+			}
+			
+			this.html.$close.hide();
 			
 			this.html.$close.click(function(){
 				cookiesKitchen.hideAlert();

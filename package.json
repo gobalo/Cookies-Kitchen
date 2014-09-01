@@ -2,7 +2,7 @@
   "name": "cookiesKitchen",
   "title": "Cookies Kitchen",
   "description": "jQuery cookies advice",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/gobalo/Cookies-Kitchen",
   "engines": {
     "node": ">= 0.10.0"
