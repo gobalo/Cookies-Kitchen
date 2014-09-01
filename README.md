@@ -14,7 +14,7 @@ Include this script label into the body tag for async load:
 ```html
 <script data-domain="NAME" data-url="ADVICE-URL">
 		(function() {
-		    var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src=('https://rawgit.com/gobalo/Cookies-Kitchen/master/dist/cookiesKitchen.min.js';
+		    var scp=document.createElement('script');scp.type='text/javascript';scp.async=true;scp.src='https://rawgit.com/gobalo/Cookies-Kitchen/master/dist/cookiesKitchen.min.js';
 		    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scp, s);
 		})();
 </script>
