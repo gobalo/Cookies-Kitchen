@@ -175,11 +175,18 @@ cookiesKitchen = {
 							'que aceptas el uso de cookies.<br/>Por favor, revisa nuestra ' + privacy + '.' +
 						'</p>');
 					break;
-				default:
-					this.html.$close = $('<span id="close" style="top:10px">X</span>');
+				case '3':
+					this.html.$close = $('<span id="close">Aceptar</span>');
 					this.html.$content= $('<p>El sitio web de ' +
 							'<strong>' + this.settings.name + '</strong> hace uso de cookies propias y de terceros para ' +
 							'ofrecerte un mejor servicio. Por favor, revisa nuestra ' + privacy + '.' +
+						'</p>');
+				default:
+					this.html.$close = $('<span id="close" style="top:10px">X</span>');
+					this.html.$content= $('<p>' +
+							'<strong>' + this.settings.name + '</strong> utiliza cookies propias y de terceros para mejorar ' +
+							'tu experiencia de navegación y realizar tareas de análisis. Si continúas navegando consideramos ' +
+							'que aceptas el uso de cookies.<br/>Por favor, revisa nuestra ' + privacy + '.' +
 						'</p>');
 			}
 			
