@@ -160,6 +160,7 @@ cookiesKitchen = {
 			
 			switch( this.settings.style ){
 				case "1":
+					var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Política de Cookies</a>' : 'Política de Cookies';
 					this.html.$close = $('<span id="close" style="top:10px">X</span>');
 					this.html.$content= $('<p>' +
 							'<strong>' + this.settings.name + '</strong> utiliza cookies propias y de terceros para mejorar ' +
@@ -168,6 +169,7 @@ cookiesKitchen = {
 						'</p>');
 					break;
 				case '2':
+					var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Política de Cookies</a>' : 'Política de Cookies';
 					this.html.$close = $('<span id="close">Cerrar</span>');
 					this.html.$content= $('<p>' +
 							'<strong>' + this.settings.name + '</strong> utiliza cookies propias y de terceros para mejorar ' +
@@ -176,12 +178,14 @@ cookiesKitchen = {
 						'</p>');
 					break;
 				case '3':
+					var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Más información</a>' : 'Más información';
 					this.html.$close = $('<span id="close">Aceptar</span>');
 					this.html.$content= $('<p>El sitio web de ' +
 							'<strong>' + this.settings.name + '</strong> hace uso de cookies propias y de terceros para ' +
-							'ofrecerte un mejor servicio. Por favor, revisa nuestra ' + privacy + '.' +
+							'ofrecerte un mejor servicio. [' + privacy + ']' +
 						'</p>');
 				default:
+					var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Política de Cookies</a>' : 'Política de Cookies';
 					this.html.$close = $('<span id="close" style="top:10px">X</span>');
 					this.html.$content= $('<p>' +
 							'<strong>' + this.settings.name + '</strong> utiliza cookies propias y de terceros para mejorar ' +
