@@ -184,6 +184,7 @@ cookiesKitchen = {
 							'<strong>' + this.settings.name + '</strong> hace uso de cookies propias y de terceros para ' +
 							'ofrecerte un mejor servicio. [' + privacy + ']' +
 						'</p>');
+					break;
 				default:
 					var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Política de Cookies</a>' : 'Política de Cookies';
 					this.html.$close = $('<span id="close" style="top:10px">X</span>');
