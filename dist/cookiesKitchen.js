@@ -1,4 +1,4 @@
-/*! Cookies Kitchen - v0.1.2 - 2014-09-01
+/*! Cookies Kitchen - v0.1.2 - 2014-09-05
 * https://github.com/gobalo/Cookies-Kitchen
 * Copyright (c) 2014 ; Licensed MIT */
 var cookiesKitchen;
@@ -196,7 +196,7 @@ cookiesKitchen = {
 			//Append htm advice
 			this.html.$advice.append('<style>' + this.styles.bg + this.styles[this.settings.style] + '</style>').append( this.html.$content.append( this.html.$close ) );
 			
-			$('body').prepend( this.html.$advice ).prepend( this.html.$bg );
+			$('body').append( this.html.$advice ).prepend( this.html.$bg );
 			
 			$(document).trigger('cooking-cookie');
 			this.lastEvent = 'cooking-cookie';
