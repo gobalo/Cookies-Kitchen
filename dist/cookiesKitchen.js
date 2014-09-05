@@ -148,8 +148,8 @@ cookiesKitchen = {
 		
 		if( !this.html.$advice && !this.html.$bg ){
 			
-			this.html.$bg	= $('<div id="cookies-alert-bg"></div>').hide();
-			this.html.$advice = $('<div id="cookies-alert"></div>').hide();
+			this.html.$bg	= $('<!--googleoff: all--><div id="cookies-alert-bg"></div><!--googleon: all-->').hide();
+			this.html.$advice = $('<!--googleoff: all--><div id="cookies-alert"></div><!--googleon: all-->').hide();
 			
 			//Construct html advice
 			var privacy	= this.settings.url!=='' ? '<a href="' + this.settings.url + '" target="_blank">Política de Cookies</a>' : 'Política de Cookies';
