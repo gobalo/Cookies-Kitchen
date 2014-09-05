@@ -196,7 +196,7 @@ cookiesKitchen = {
 			//Append htm advice
 			this.html.$advice.append('<style>' + this.styles.bg + this.styles[this.settings.style] + '</style>').append( this.html.$content.append( this.html.$close ) );
 			
-			$('body').append( this.html.$advice ).prepend( this.html.$bg );
+			$('body').append( this.html.$advice ).append( this.html.$bg );
 			
 			$(document).trigger('cooking-cookie');
 			this.lastEvent = 'cooking-cookie';
